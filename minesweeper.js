@@ -67,6 +67,7 @@ function startGame () {
   lib.initBoard();
   initialTime = new Date();
   startTime()
+  newGameSound.play();
 }
 
 // Define this function to look for a win condition:

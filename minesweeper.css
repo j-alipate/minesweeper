@@ -5,8 +5,8 @@ html, body {
 
 body {
   background-color: rgb(255, 225, 225);
-  animation: colorchange 30s infinite;
-  -webkit-animation: colorchange 30s infinite;
+  animation: colorchange 10s infinite;
+  -webkit-animation: colorchange 10s infinite;
   display: flex;
   align-items: center;
   justify-content: flex-center;
