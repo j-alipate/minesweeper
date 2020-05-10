@@ -26,7 +26,8 @@ function createBoard(boardsize){
   return cellsArray
 }
 
-//setting some variables for game
+//initialising some variables for the game
+let initialTime;
 let board;
 let difficulty;
 var winGameSound = new Audio('audio/new_game.mp3');
@@ -36,12 +37,22 @@ var newGameSound = new Audio('audio/win_game.mp3');
 //This function clears and resets the gameboard
 function gameReset(){
   newGameSound.play();
+  initialTime = new Date();
   let clearboard = document.getElementById('board');
   clearboard.innerHTML = "";
   difficulty = parseInt(document.getElementById("gamedifficulty").value);
   board = {cells: createBoard(difficulty)}
   board.cells.forEach(element => element.surroundingMines = countSurroundingMines(element));
   lib.initBoard()
+}
+
+//This section gets and updates the timer
+function startTime() {
+  var currentTime = new Date();
+  var timeNow = currentTime - initialTime;
+  var s = (Math.round((timeNow/1000) * 100) / 100).toFixed(1);
+  document.getElementById('timer').innerHTML = "Timer: " + s;
+  var t = setTimeout(startTime, 100);
 }
 
 function startGame () {
@@ -53,7 +64,9 @@ function startGame () {
   difficulty = parseInt(document.getElementById("gamedifficulty").value);
   board = {cells: createBoard(difficulty)}
   board.cells.forEach(element => element.surroundingMines = countSurroundingMines(element));
-  lib.initBoard()
+  lib.initBoard();
+  initialTime = new Date();
+  startTime()
 }
 
 // Define this function to look for a win condition:
@@ -68,7 +81,7 @@ function checkForWin(){
   let foundMines = document.getElementsByClassName("mine marked").length;
   let checkForHiddens = document.getElementsByClassName("hidden").length;
   if(foundMines == minesTotal && foundMines == checkForHiddens){
-    lib.displayMessage('You win!');
+    lib.displayMessage('You win! You found all mines in' + document.getElementById("timer").innerHTML.slice(5) + " seconds!");
     winGameSound.play();
   }
 }
