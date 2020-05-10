@@ -4,10 +4,33 @@ html, body {
 }
 
 body {
+  background-color: rgb(255, 225, 225);
+  animation: colorchange 30s infinite;
+  -webkit-animation: colorchange 30s infinite;
   display: flex;
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
+}
+
+@keyframes colorchange{
+  7%   {background: rgb(255, 225, 225);}
+  21%  {background: rgb(255, 250, 223);}
+  35%  {background: rgb(226, 255, 223);}
+  49%  {background: rgb(217, 255, 252);}
+  63% {background: rgb(227, 230, 255);}
+  77% {background: rgb(255, 223, 253);}
+  91% {background: rgb(251, 222, 222);}
+}
+
+@-webkit-keyframes colorchange{
+  7%   {background: rgb(255, 225, 225);}
+  21%  {background: rgb(255, 250, 223);}
+  35%  {background: rgb(226, 255, 223);}
+  49%  {background: rgb(217, 255, 252);}
+  63% {background: rgb(227, 230, 255);}
+  77% {background: rgb(255, 223, 253);}
+  91% {background: rgb(251, 222, 222);}
 }
 
 #message, #notes {
@@ -58,3 +81,14 @@ div.hidden:hover {
 div.marked, div.marked:hover {
   background: no-repeat center/60% url("images/mark.svg") deepskyblue;
 }
+
+#resetgame {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  border-radius: 15px
+}
+
+#resetgame:hover {
+  background-color: #555555;
+  color: white;
